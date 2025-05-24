@@ -3,7 +3,7 @@ import terser from "@rollup/plugin-terser";
 import process from "process";
 
 const isDevelopment = process.env.BUILD === "development";
-const staticFiles = ["icons", "lang", "LICENSE", "module.json"];
+const staticFiles = ["icons", "lang", "LICENSE", "module.json", "style.css"];
 
 export default {
     input: "scripts/_index.mjs",
@@ -11,7 +11,7 @@ export default {
         dir: "dist",
         format: "es",
         sourcemap: true,
-        entryFileNames: "script.mjs",
+        entryFileNames: "script.js",
         assetFileNames: "script.[ext]",
         generatedCode: "es2015",
         plugins: [terser({
