@@ -1,16 +1,18 @@
-import archiver from "archiver";
-import fs from "fs";
-import process from "process";
+import copy from "@guanghechen/rollup-plugin-copy";
 import terser from "@rollup/plugin-terser";
+import process from "process";
 
 const isDevelopment = process.env.BUILD === "development";
+const staticFiles = ["icons", "lang", "LICENSE", "module.json"];
 
 export default {
     input: "scripts/_index.mjs",
     output: {
-        file: "script.js",
-        format: "iife",
+        dir: "dist",
+        format: "es",
         sourcemap: true,
+        entryFileNames: "script.mjs",
+        assetFileNames: "script.[ext]",
         generatedCode: "es2015",
         plugins: [terser({
             ecma: 2023,
@@ -42,38 +44,14 @@ export default {
             keep_fnames: isDevelopment,
         })],
     },
-    plugins: [{
-        closeBundle() {
-            if (isDevelopment) {
-                return;
-            }
-
-            const start = Date.now();
-            const output = fs.createWriteStream("module.zip");
-            const archive = archiver("zip", { zlib: { level: 9 } });
-
-            output.on("close", function () {
-                console.log(`\x1b[32mcreated \x1b[1mmodule.zip\x1b[0m\x1b[32m in \x1b[1m${Date.now() - start}ms\x1b[0m`);
-            });
-
-            archive.on("warning", function (error) {
-                throw error;
-            });
-
-            archive.on("error", function (error) {
-                throw error;
-            });
-
-            archive.pipe(output);
-
-            for (const name of ["module.json", "script.js", "script.js.map", "style.css", "LICENSE"]) {
-                archive.append(fs.createReadStream(name), { name });
-            }
-
-            archive.directory("icons", "icons");
-            archive.directory("lang", "lang");
-
-            archive.finalize();
-        },
-    }],
+    plugins: [
+        copy({
+            targets: [
+                {
+                    src: staticFiles.map((f) => `./${f}`),
+                    dest: "dist",
+                },
+            ],
+        }),
+    ],
 };

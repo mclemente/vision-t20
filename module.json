@@ -1,14 +1,14 @@
 {
   "id": "vision-t20",
-  "title": "Vision 5e",
-  "description": "Vision Automation for D&D 5e",
+  "title": "Visão para Tormenta20",
+  "description": "Automação de visão para Tormenta20",
   "authors": [
     {
-      "name": "dev7355608",
-      "email": "dev7355608@gmail.com"
+      "name": "Matheus Clemente",
+      "discord": "mclemente",
+      "email": "matheus.xb@gmail.com"
     }
   ],
-  "version": "1.0.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -43,11 +43,12 @@
       }
     ]
   },
-  "url": "https://github.com/dev7355608/vision-t20",
-  "manifest": "https://github.com/dev7355608/vision-t20/releases/latest/download/module.json",
-  "download": "https://github.com/dev7355608/vision-t20/releases/download/v3.0.5/module.zip",
-  "changelog": "https://github.com/dev7355608/vision-t20/releases/tag/v3.0.5",
-  "bugs": "https://github.com/dev7355608/vision-t20/issues",
-  "readme": "https://raw.githubusercontent.com/dev7355608/vision-t20/main/README.md",
-  "license": "https://raw.githubusercontent.com/dev7355608/vision-t20/main/LICENSE"
+  "changelog": "https://github.com/mclemente/vision-t20/releases/",
+  "bugs": "https://github.com/mclemente/vision-t20/issues",
+  "readme": "https://raw.githubusercontent.com/mclemente/vision-t20/main/README.md",
+  "license": "https://raw.githubusercontent.com/mclemente/vision-t20/main/LICENSE",
+	"url": "This is auto replaced",
+	"version": "This is auto replaced",
+	"manifest": "This is auto replaced",
+	"download": "This is auto replaced"
 }

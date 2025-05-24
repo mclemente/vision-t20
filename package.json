@@ -7,27 +7,25 @@
         "url": "https://github.com/dev7355608"
     },
     "license": "MIT",
-    "homepage": "https://github.com/dev7355608/vision-t20",
+    "homepage": "https://github.com/mclemente/vision-t20",
     "bugs": {
         "url": "https://github.com/dev7355608/vision-t20/issues",
         "email": "dev7355608@gmail.com"
     },
     "private": true,
     "scripts": {
-        "build": "npm run clean && rollup -c",
-        "clean": "rimraf module.zip script.js script.js.map",
+        "build": "rollup -c",
         "lint": "eslint",
         "lint:fix": "eslint --fix",
         "watch": "rollup -c -w --environment BUILD:development"
     },
     "devDependencies": {
         "@eslint/js": "^9.26.0",
+        "@guanghechen/rollup-plugin-copy": "^6.0.7",
         "@rollup/plugin-terser": "^0.4.4",
         "@stylistic/eslint-plugin": "^4.2.0",
-        "archiver": "^7.0.1",
         "eslint": "^9.26.0",
         "globals": "^16.1.0",
-        "rimraf": "^6.0.1",
         "rollup": "^4.40.0"
     }
 }

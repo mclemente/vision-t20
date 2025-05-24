@@ -4,7 +4,7 @@ import globals from "globals";
 
 export default [
     {
-        ignores: ["script.js"],
+        ignores: ["dist"],
     },
     pluginJs.configs.recommended,
     stylistic.configs.customize({
