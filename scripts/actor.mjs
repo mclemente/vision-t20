@@ -48,10 +48,6 @@ export default (Actor) => class extends Actor {
             this.statuses.add(CONFIG.specialStatusEffects.POISONOUS);
         }
 
-        // if (isThinking(this)) {
-        //     this.statuses.add(CONFIG.specialStatusEffects.THINKING);
-        // }
-
         if (this.type === "vehicle") {
             this.statuses.add(CONFIG.specialStatusEffects.OBJECT);
         }
@@ -133,17 +129,6 @@ function upgradeDetectionMode(actor, id, range, units) {
     }
 
     actor.detectionModes[id] = range;
-}
-
-/**
- * @param {Document} document
- * @returns {number | undefined}
- */
-function findRange(description, units) {
-    const result = new DOMParser().parseFromString(description, "text/html").body.textContent
-        ?.match(/(?<=^|\D)(?<range>[1-9]\d*)\s*(?:(?<ft>ft|feet|Fuß|pieds?|pies?|pés?)|(?<m>m|meters?|metres?|Meter|mètres?|metros?))(?=$|[\s.:,;])/i);
-
-    return result ? convertUnits(Number(result.groups.range), result.groups.ft !== undefined ? "ft" : "m", units) : undefined;
 }
 
 /** @type {Set<string>} */
@@ -230,22 +215,6 @@ function isPoisonous(actor) {
     }
 
     return actor.items.some(isPoisonousNaturalWeapon);
-}
-
-/**
- * A thinking creature is a creature that speaks at least one language or is telepathic.
- * @param {Actor} actor
- * @returns {boolean}
- */
-function isThinking(actor) {
-    if (actor.statuses.has(CONFIG.specialStatusEffects.OBJECT)
-        || actor.statuses.has(CONFIG.specialStatusEffects.PETRIFIED)) {
-        return false;
-    }
-
-    return (actor.type === "character" || actor.type === "npc")
-        && (actor.system.traits.languages.value.size > 0
-            || !!actor.system.traits.languages.custom);
 }
 
 /**
