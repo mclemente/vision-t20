@@ -5,7 +5,7 @@ export default class VisionModeDarkvision extends foundry.canvas.perception.Visi
     constructor() {
         super({
             id: "darkvision",
-            label: "DND5E.SenseDarkvision",
+            label: "T20.SenseDarkVision",
             canvas: {
                 shader: foundry.canvas.rendering.shaders.ColorAdjustmentsSamplerShader,
                 uniforms: { contrast: 0, saturation: -1, exposure: 0 },

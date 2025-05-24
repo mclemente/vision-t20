@@ -9,7 +9,7 @@ export default class DetectionModeTruesight extends DetectionMode {
     constructor() {
         super({
             id: "seeAll",
-            label: "DND5E.SenseTruesight",
+            label: "T20.SenseTruesight",
             type: DetectionMode.DETECTION_TYPES.SIGHT,
             sort: -5,
         });
@@ -51,7 +51,7 @@ export default class DetectionModeTruesight extends DetectionMode {
             return true;
         }
 
-        const los = visionSource.getLOS(0);
+        const los = visionSource.getLOS(Infinity);
 
         if (los !== visionSource.los) {
             return los.contains(test.point.x, test.point.y);

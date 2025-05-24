@@ -37,36 +37,20 @@ export class Matcher {
     }
 }
 
-export function fromFeet(range, units) {
+export function fromMeters(range, units) {
     switch (units) {
-        case "in": return range / 12;
-        case "ft": return range;
-        case "yd": return range * 3;
-        case "mi": return range * 1760;
-        case "mm": return range * 10 / 3000;
-        case "cm": return range * 10 / 300;
-        case "dm": return range * 10 / 30;
-        case "m": return range * 10 / 3;
-        case "km": return range * 10000 / 3;
+        case "km": return range / 1000;
         default: return range;
     }
 }
 
-export function toFeet(range, units) {
+export function toMeters(range, units) {
     switch (units) {
-        case "in": return range * 12;
-        case "ft": return range;
-        case "yd": return range / 3;
-        case "mi": return range / 1760;
-        case "mm": return range * 3000 / 10;
-        case "cm": return range * 300 / 10;
-        case "dm": return range * 30 / 10;
-        case "m": return range * 3 / 10;
-        case "km": return range * 3 / 10000;
+        case "km": return range * 1000;
         default: return range;
     }
 }
 
 export function convertUnits(range, fromUnits, toUnits) {
-    return toFeet(fromFeet(range, fromUnits), toUnits);
+    return toMeters(fromMeters(range, fromUnits), toUnits);
 }

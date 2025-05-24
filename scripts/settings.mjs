@@ -1,41 +1,9 @@
-/** @type {string | number} */
-export let defaultHearingRange;
-
 /** @type {boolean} */
 export let spectatorMode;
 
 Hooks.once("init", () => {
     game.settings.register(
-        "vision-5e",
-        "defaultHearingRange",
-        {
-            name: "VISION5E.SETTINGS.defaultHearingRange.label",
-            hint: "VISION5E.SETTINGS.defaultHearingRange.hint",
-            scope: "world",
-            config: true,
-            requiresReload: true,
-            type: new dnd5e.dataModels.fields.FormulaField({
-                required: true,
-                deterministic: true,
-                initial: "15 + 2.5 * (@skills.prc.passive - 10)",
-            }),
-        },
-    );
-
-    const formula = game.settings.get("vision-5e", "defaultHearingRange");
-
-    if (foundry.dice.Roll.validate(formula)) {
-        try {
-            defaultHearingRange = foundry.dice.Roll.safeEval(formula);
-        } catch (_error) {
-            defaultHearingRange = formula;
-        }
-    } else {
-        defaultHearingRange = Number(formula) || 0;
-    }
-
-    game.settings.register(
-        "vision-5e",
+        "vision-t20",
         "spectatorMode",
         {
             name: "VISION5E.SETTINGS.spectatorMode.label",
@@ -59,31 +27,18 @@ Hooks.once("init", () => {
         },
     );
 
-    spectatorMode = game.settings.get("vision-5e", "spectatorMode");
+    spectatorMode = game.settings.get("vision-t20", "spectatorMode");
 });
 
 Hooks.once("ready", () => {
     let content = "";
 
-    if (!game.settings.storage.get("world").some((setting) => setting.key === "vision-5e.defaultHearingRange")) {
-        content += `
-            <div class="form-group">
-                <label>${game.i18n.localize("VISION5E.SETTINGS.defaultHearingRange.label")} <span class="units">(ft)</span></label>
-                <div class="form-fields" style="flex: 1;">
-                    <input type="text" name="defaultHearingRange" placeholder="0"
-                        value="${foundry.utils.escapeHTML(game.settings.get("vision-5e", "defaultHearingRange"))}">
-                </div>
-                <p class="hint">${game.i18n.localize("VISION5E.SETTINGS.defaultHearingRange.hint")}</p>
-            </div>
-        `;
-    }
-
-    if (!game.settings.storage.get("world").some((setting) => setting.key === "vision-5e.spectatorMode")) {
+    if (!game.settings.storage.get("world").some((setting) => setting.key === "vision-t20.spectatorMode")) {
         content += `
             <div class="form-group">
                 <label>${game.i18n.localize("VISION5E.SETTINGS.spectatorMode.label")}</label>
                 <div class="form-fields">
-                    <input type="checkbox" name="spectatorMode" ${game.settings.get("vision-5e", "spectatorMode") ? "checked" : ""}>
+                    <input type="checkbox" name="spectatorMode" ${game.settings.get("vision-t20", "spectatorMode") ? "checked" : ""}>
                 </div>
                 <p class="hint">${game.i18n.localize("VISION5E.SETTINGS.spectatorMode.hint")}</p>
             </div>
@@ -110,11 +65,11 @@ Hooks.once("ready", () => {
                 let requiresReload = false;
 
                 for (const [key, value] of Object.entries(settings)) {
-                    if (game.settings.settings.get(`vision-5e.${key}`).requiresReload) {
-                        requiresReload ||= value !== game.settings.get("vision-5e", key);
+                    if (game.settings.settings.get(`vision-t20.${key}`).requiresReload) {
+                        requiresReload ||= value !== game.settings.get("vision-t20", key);
                     }
 
-                    promises.push(game.settings.set("vision-5e", key, value));
+                    promises.push(game.settings.set("vision-t20", key, value));
                 }
 
                 await Promise.all(promises);
@@ -125,19 +80,4 @@ Hooks.once("ready", () => {
             },
         },
     });
-});
-
-Hooks.on("renderSettingsConfig", (application, element, context, options) => {
-    if (!game.user.isGM) {
-        return;
-    }
-
-    if (!options.parts.includes("main")) {
-        return;
-    }
-
-    const input = element.querySelector(`input[name="vision-5e.defaultHearingRange"]`);
-
-    input.placeholder = "0";
-    input.closest(".form-group").querySelector("label").insertAdjacentHTML("beforeend", ` <span class="units">(ft)</span>`);
 });

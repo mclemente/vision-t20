@@ -1,7 +1,7 @@
-[![Latest Version](https://img.shields.io/github/v/release/dev7355608/vision-5e?display_name=tag&sort=semver&label=Latest%20Version)](https://github.com/dev7355608/vision-5e/releases/latest)
+[![Latest Version](https://img.shields.io/github/v/release/dev7355608/vision-t20?display_name=tag&sort=semver&label=Latest%20Version)](https://github.com/dev7355608/vision-t20/releases/latest)
 ![Foundry Version](https://img.shields.io/endpoint?url=https://foundryshields.com/version?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdev7355608%2Fvision-5e%2Fmain%2Fmodule.json)
-[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fvision-5e&colorB=blueviolet)](https://forge-vtt.com/bazaar#package=vision-5e)
-[![License](https://img.shields.io/github/license/dev7355608/vision-5e?label=License)](LICENSE)
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fvision-5e&colorB=blueviolet)](https://forge-vtt.com/bazaar#package=vision-t20)
+[![License](https://img.shields.io/github/license/dev7355608/vision-t20?label=License)](LICENSE)
 
 # Vision 5e (Foundry VTT Module)
 
@@ -164,67 +164,8 @@ While a player owns/observes only tokens with vision that are _defeated_ (_dead_
 
 | Detection Mode            | Attribute Key                                     |
 | ------------------------- | ------------------------------------------------- |
-| Blindsense                | `ATL.detectionModes.bindsense.range`              |
 | Blindsight                | `system.attributes.senses.blindsight`             |
-| Blood Sense               | `ATL.detectionModes.bloodSense.range`             |
 | Darkvision                | `system.attributes.senses.darkvision`             |
-| Detect Evil and Good      | `ATL.detectionModes.detectEvilAndGood.range`      |
-| Detect Magic              | `ATL.detectionModes.detectMagic.range`            |
-| Detect Poison and Disease | `ATL.detectionModes.detectPoisonAndDisease.range` |
-| Detect Thoughts           | `ATL.detectionModes.detectThoughts.range`         |
-| Devil's Sight             | `ATL.detectionModes.devilsSight.range`            |
-| Divine Sense              | `ATL.detectionModes.divineSense.range`            |
-| Ethereal Sight            | `ATL.detectionModes.etherealSight.range`          |
-| Eyes of the Grave         | `ATL.detectionModes.eyesOfTheGrave.range`         |
-| Hearing                   | `ATL.detectionModes.hearing.range`                |
-| Life Sense                | `ATL.detectionModes.lifeSense.range`              |
-| Light Perception          | `ATL.detectionModes.lightPerception.range`        |
-| See Invisibility          | `ATL.detectionModes.seeInvisibility.range`        |
 | Thermal Vision            | `system.attributes.senses.thermalVision`          |
 | Tremorsense               | `system.attributes.senses.tremorsense`            |
 | Truesight                 | `system.attributes.senses.truesight`              |
-| Witch Sight               | `ATL.detectionModes.witchSight.range`             |
-
-_Note: Attribute keys starting with `ATL.` require the [Active Token Effects](https://foundryvtt.com/packages/ATL) module._
-
----
-
-### Translations
-
-| English                     | _Source_                              | German                         | French                                                                      | Spanish                           | Portuguese (Brazil)                               |
-| --------------------------- | ------------------------------------- | ------------------------------ | --------------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------- |
-| `Blind Senses`              | _Monster feat_                        | `Blinde Sinne`                 | `Sens aveugles`                                                             | `Sentidos de ciego`               | `Sentido Cego`                                    |
-| `Blindsense`                | _Rogue feat_                          | `Blindgespür`                  | `Perception aveugle`                                                        | `Sentir sin ver`                  | `Sentido Cego`                                    |
-| `Blood Sense`               | _Monster feat_                        | `Blutgespür`                   | `Perception du sang`                                                        | `Percepción de Sangre`            | `Percepção do Sangue`                             |
-| `Detect Evil and Good`      | _Spell_                               | `Gutes und Böses entdecken`    | `Détection du mal et du bien`                                               | `Detectar el bien y el mal`       | `Detectar o Bem e o Mal` / `Detectar o Bem e Mal` |
-| `Detect Magic`              | _Spell_                               | `Magie entdecken`              | `Détection de la magie`                                                     | `Detectar magia`                  | `Detectar Magia`                                  |
-| `Detect Poison and Disease` | _Spell_                               | `Gift und Krankheit entdecken` | `Détection du poison et des maladies`                                       | `Detectar venenos y enfermedades` | `Detectar Veneno e Doença`                        |
-| `Detect Thoughts`           | _Spell_                               | `Gedanken wahrnehmen`          | `Détection des pensées`                                                     | `Detectar pensamientos`           | `Detectar Pensamentos`                            |
-| `Devil's Sight`             | _Warlock invocation / Monster feat_   | `Teufelssicht`                 | `Vision de diable` / `Vision du diable` / `Vue de diable` / `Vue du diable` | `Vista del diablo`                | `Visão Diabólica` / `Visão do Diabo`              |
-| `Divine Sense`              | _Paladin feat_                        | `Göttliches Gespür`            | `Perception divine`                                                         | `Sentidos divinos`                | `Sentido Divino`                                  |
-| `Echolocation`              | _Monster feat_                        | `Echolot`                      | `Écholocation` / `Écholocalisation`                                         | `Ecolocalización`                 | `Ecolocalização`                                  |
-| `Eldritch Adept`            | _Feat_                                | `Schauerlicher Adept`          | `Adepte occulte`                                                            | `Adepto sobrenatural`             | `Adepto Místico`                                  |
-| `Eldritch Invocation`       | _Warlock feat_                        | `Schauerliche Anrufung`        | `Invocation occulte` / `Manifestation occulte`                              | `Invocación sobrenatural`         | `Invocação Mística`                               |
-| `Ethereal Sight`            | _Monster feat_                        | `Ätherische Sicht`             | `Vision éthérée` / `Vue éthérée`                                            | `Visión etérea`                   | `Visão Etérea`                                    |
-| `Eyes of the Grave`         | _Cleric (Grave Domain) feat_          | `Grabesblick`                  | `Œil de la tombe`                                                           | `Ojos de la Tumba`                | `Olhos da Sepultura`                              |
-| `Ghostly Gaze`              | _Warlock invocation_                  | `Geisterhafter Blick`          | `Regard fantomatique`                                                       | `Mirada fantasmal`                | `Olhar Fantasmagórico`                            |
-| `Hollow One`                | _Supernatural Gift_                   | `Leerwandler`                  | `Celui-qui-est-creux`                                                       | `Aquel que está vacío`            | `Oco`                                             |
-| `Life Sense`                | _Monster feat_                        | `Lebensgespür`                 | `Perception de la vie`                                                      | `Percepción de la Vida`           | `Percepção da Vida`                               |
-| `Magic Awareness`           | _Barbarian (Path of Wild Magic) feat_ | `Magische Wahrnehmung`         | `Conscience magique`                                                        | `Conciencia mágica`               | `Percepção Mágica`                                |
-| `Mind Blank`                | _Spell_                               | `Gedankenleere`                | `Esprit impénétrable`                                                       | `Mente en Blanco`                 | `Limpar a Mente`                                  |
-| `Nondetection`              | _Spell_                               | `Unauffindbarkeit`             | `Antidétection`                                                             | `Indetectable`                    | `Indetectável`                                    |
-| `See Invisibility`          | _Spell_                               | `Unsichtbares sehen`           | `Détection de l'invisibilité`                                               | `Ver invisibilidad`               | `Ver o Invisível`                                 |
-| `Sense Magic`               | _Monster feat_                        | `Magie spüren`                 | `Détection de la magie` / `Perception de la magie`                          | `Sentir magia`                    | `Sentir Magia`                                    |
-| `Sequester`                 | _Spell_                               | `Verbergen`                    | `Dissimulation suprême`                                                     | `Recluir`                         | `Refugiar`                                        |
-| `Shapechanger`              | _Monster feat / Subtype_              | `Gestaltwandler`               | `Métamorphe`                                                                | `Cambiaformas`                    | `Metamorfo`                                       |
-| `Supernatural Gift`         | _Character Creation Option_           | `Übernatürliche Gabe`          | `Don surnaturel`                                                            | `Don supernatural`                | `Dom Sobrenatural`                                |
-| `The Third Eye`             | _Wizard (Divination) feat_            | `Das dritte Auge`              | `Troisième œil`                                                             | `El Tercer Ojo`                   | `O Terceiro Olho`                                 |
-| `Thermal Vision`            | _Ancestry (Ashka) feat_               | `Wärmesicht`                   | `Vision thermique`                                                          | `Visión Térmica`                  | `Visão Térmica`                                   |
-| `Umbral Sight`              | _Ranger (Gloomstalker) feat_          | `Düstersicht`                  | `Vision des ombres`                                                         | `Visión en la umbra`              | `Visão Umbral`                                    |
-| `Witch Sight`               | _Warlock invocation_                  | `Hexensicht`                   | `Vision de sorcier` / `Vision sorcière` / `Vue de sorcier` / `Vue sorcière` | `Visión bruja`                    | `Visão da Bruxa`                                  |
-
-_Note: The automation is not case-sensitive._
-
-_Note: You may use `'` or `’` for apostrophes._
-
-_Note: In French the colon (`:`) is preceded by a space, but it isn't required in order for the automation to detect the feat. For example, both `Manifestation : Regard fantomatique` and `Manifestation: Regard fantomatique` work._

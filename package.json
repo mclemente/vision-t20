@@ -1,5 +1,5 @@
 {
-    "name": "vision-5e",
+    "name": "vision-t20",
     "description": "Vision 5e (Foundry VTT Module)",
     "author": {
         "name": "dev7355608",
@@ -7,9 +7,9 @@
         "url": "https://github.com/dev7355608"
     },
     "license": "MIT",
-    "homepage": "https://github.com/dev7355608/vision-5e",
+    "homepage": "https://github.com/dev7355608/vision-t20",
     "bugs": {
-        "url": "https://github.com/dev7355608/vision-5e/issues",
+        "url": "https://github.com/dev7355608/vision-t20/issues",
         "email": "dev7355608@gmail.com"
     },
     "private": true,

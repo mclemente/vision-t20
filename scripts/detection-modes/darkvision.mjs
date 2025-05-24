@@ -9,7 +9,7 @@ export default class DetectionModeDarkvision extends DetectionMode {
     constructor() {
         super({
             id: "basicSight",
-            label: "DND5E.SenseDarkvision",
+            label: "T20.SenseDarkVision",
             type: DetectionMode.DETECTION_TYPES.SIGHT,
             sort: -7,
         });

@@ -9,7 +9,7 @@ export default class DetectionModeBlindsight extends DetectionMode {
     constructor() {
         super({
             id: "blindsight",
-            label: "DND5E.SenseBlindsight",
+            label: "T20.SenseBlindSight",
             type: DetectionMode.DETECTION_TYPES.SIGHT,
             sort: -4,
         });

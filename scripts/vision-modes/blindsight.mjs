@@ -5,7 +5,7 @@ export default class VisionModeBlindsight extends foundry.canvas.perception.Visi
     constructor() {
         super({
             id: "blindsight",
-            label: "DND5E.SenseBlindsight",
+            label: "T20.SenseBlindSight",
             canvas: {
                 shader: foundry.canvas.rendering.shaders.ColorAdjustmentsSamplerShader,
                 uniforms: { contrast: 0, saturation: -1, exposure: 0 },

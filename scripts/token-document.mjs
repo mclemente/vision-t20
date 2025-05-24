@@ -1,4 +1,4 @@
-import { convertUnits, fromFeet } from "./utils.mjs";
+import { convertUnits } from "./utils.mjs";
 
 export default (TokenDocument) => class extends TokenDocument {
     /** @override */
@@ -38,14 +38,12 @@ export default (TokenDocument) => class extends TokenDocument {
         const sceneUnits = this.parent?.grid.units || "";
 
         if (this.actor) {
-            const actorUnits = this.actor.system.attributes?.senses?.units ?? "ft";
-
             for (const [id, range] of Object.entries(this.actor.detectionModes)) {
                 if (!this.detectionModes.find((mode) => mode.id === id)) {
                     this.detectionModes.push({
                         id,
                         enabled: true,
-                        range: convertUnits(range, actorUnits, sceneUnits),
+                        range: convertUnits(range, "m", sceneUnits),
                     });
                 }
             }
@@ -56,10 +54,8 @@ export default (TokenDocument) => class extends TokenDocument {
         }
 
         if (this.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)) {
-            const maxRange = fromFeet(60, sceneUnits);
-
             for (const mode of this.detectionModes) {
-                mode.range = Math.min(mode.range, maxRange);
+                mode.range = Math.min(mode.range, 18);
             }
         }
     }

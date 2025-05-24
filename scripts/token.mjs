@@ -1,6 +1,5 @@
 import { DETECTION_LEVELS } from "./const.mjs";
 import { spectatorMode } from "./settings.mjs";
-import { fromFeet } from "./utils.mjs";
 
 export default (Token) => class extends Token {
     /**
@@ -183,12 +182,7 @@ export default (Token) => class extends Token {
                 break;
         }
 
-        // Handle Ghostly Gaze
-        if (this.document.hasStatusEffect(CONFIG.specialStatusEffects.GHOSTLY_GAZE)) {
-            data.unconstrainedRadius = this.getLightRadius(fromFeet(30, canvas.grid.units));
-        } else {
-            data.unconstrainedRadius = 0;
-        }
+        data.unconstrainedRadius = 0;
 
         // Handle Etherealness
         if (this.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)) {
@@ -240,7 +234,6 @@ export default (Token) => class extends Token {
             || statusId === CONFIG.specialStatusEffects.DEAFENED
             || statusId === CONFIG.specialStatusEffects.DEVILS_SIGHT
             || statusId === CONFIG.specialStatusEffects.ECHOLOCATION
-            || statusId === CONFIG.specialStatusEffects.GHOSTLY_GAZE
             || statusId === CONFIG.specialStatusEffects.SLEEPING) {
             this.initializeVisionSource();
         } else if (statusId === CONFIG.specialStatusEffects.ETHEREAL) {

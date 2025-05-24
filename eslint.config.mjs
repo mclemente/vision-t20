@@ -1,6 +1,6 @@
-import globals from "globals";
 import pluginJs from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import globals from "globals";
 
 export default [
     {
@@ -33,6 +33,7 @@ export default [
                 game: "readonly",
                 Hooks: "readonly",
                 PIXI: "readonly",
+                tormenta20: "readonly",
             },
         },
         rules: {
