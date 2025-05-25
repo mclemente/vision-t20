@@ -1,15 +1,13 @@
-import DetectionMode from "./base.mjs";
-
-const { Token } = foundry.canvas.placeables;
+import DetectionModeT20 from "./base.mjs";
 
 /**
  * Base class for Detect Evil and Good / Magic / Poison and Disease / Thoughts.
  * @abstract
  */
-export default class DetectionModeDetect extends DetectionMode {
+export default class DetectionModeDetect extends DetectionModeT20 {
     constructor(data = {}) {
         super(foundry.utils.mergeObject({
-            type: DetectionMode.DETECTION_TYPES.OTHER,
+            type: DetectionModeT20.DETECTION_TYPES.OTHER,
             angle: false,
             important: true,
             imprecise: true,
@@ -20,7 +18,7 @@ export default class DetectionModeDetect extends DetectionMode {
     _canDetect(visionSource, target) {
         const source = visionSource.object;
 
-        if (!(target instanceof Token)
+        if (!(target instanceof foundry.canvas.placeables.Token)
             || !target.actor
             || target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURROWING)
             || target.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)

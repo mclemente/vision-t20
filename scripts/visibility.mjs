@@ -1,7 +1,5 @@
 import { DETECTION_LEVELS } from "./const.mjs";
 
-const { Token } = foundry.canvas.placeables;
-
 export default (CanvasVisibility) => class extends CanvasVisibility {
     /** @override */
     testVisibility(point, options = {}) {
@@ -9,7 +7,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
 
         if (!canvas.effects.visionSources.some((source) => source.active)) {
             if (game.user.isGM) {
-                if (object instanceof Token && object._detectionLevel === undefined) {
+                if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
                     object._detectionLevel = DETECTION_LEVELS.PRECISE;
                     object._detectionFilter = null;
                 }
@@ -17,7 +15,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
                 return true;
             }
 
-            if (object instanceof Token && object._detectionLevel === undefined) {
+            if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
                 object._detectionLevel = DETECTION_LEVELS.NONE;
                 object._detectionFilter = null;
             }
@@ -35,7 +33,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
             const result = lightSource.testVisibility(config);
 
             if (result === true) {
-                if (object instanceof Token && object._detectionLevel === undefined) {
+                if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
                     object._detectionLevel = DETECTION_LEVELS.PRECISE;
                     object._detectionFilter = null;
                 }
@@ -94,7 +92,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
             visible = true;
             detectionLevel = Math.max(detectionLevel, detectionMode.imprecise ? DETECTION_LEVELS.IMPRECISE : DETECTION_LEVELS.PRECISE);
 
-            if (object instanceof Token && object._detectionLevel === undefined) {
+            if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
                 const detectionFilter = detectionMode.constructor.getDetectionFilter(visionSource, object);
 
                 if (detectionFilter) {
@@ -108,7 +106,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
         }
 
         if (!visible) {
-            if (object instanceof Token && object._detectionLevel === undefined) {
+            if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
                 object._detectionLevel = DETECTION_LEVELS.NONE;
                 object._detectionFilter = null;
             }
@@ -116,7 +114,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
             return false;
         }
 
-        if (object instanceof Token && object._detectionLevel === undefined) {
+        if (object instanceof foundry.canvas.placeables.Token && object._detectionLevel === undefined) {
             object._detectionLevel = detectionLevel;
 
             if (detectionFilters.size > 1) {

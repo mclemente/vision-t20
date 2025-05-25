@@ -13,7 +13,7 @@ import DetectionModeDarkvision from "./detection-modes/darkvision.mjs";
 import DetectionModeDetectMagic from "./detection-modes/detect-magic.mjs";
 import DetectionModeDevilsSight from "./detection-modes/devils-sight.mjs";
 import DetectionModeEtherealSight from "./detection-modes/ethereral-sight.mjs";
-import DetectionModeLightPerception from "./detection-modes/light-perception.mjs";
+import DetectionModeLightPerceptionT20 from "./detection-modes/light-perception.mjs";
 import DetectionModeSeeInvisibility from "./detection-modes/see-invisibility.mjs";
 import DetectionModeTruesight from "./detection-modes/truesight.mjs";
 import VisionModeBlindsight from "./vision-modes/blindsight.mjs";
@@ -118,7 +118,7 @@ Hooks.once("i18nInit", () => {
         DetectionModeDetectMagic,
         DetectionModeDevilsSight,
         DetectionModeEtherealSight,
-        DetectionModeLightPerception,
+        DetectionModeLightPerceptionT20,
         DetectionModeSeeInvisibility,
         DetectionModeTruesight,
     ]) {

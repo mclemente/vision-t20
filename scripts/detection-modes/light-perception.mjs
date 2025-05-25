@@ -1,16 +1,14 @@
-import DetectionMode from "./base.mjs";
-
-const { Token } = foundry.canvas.placeables;
+import DetectionModeT20 from "./base.mjs";
 
 /**
  * The detection mode for Light Perception.
  */
-export default class DetectionModeLightPerception extends DetectionMode {
+export default class DetectionModeLightPerceptionT20 extends DetectionModeT20 {
     constructor() {
         super({
             id: "lightPerception",
             label: "DETECTION.LightPerception",
-            type: DetectionMode.DETECTION_TYPES.SIGHT,
+            type: DetectionModeT20.DETECTION_TYPES.SIGHT,
             sort: -8,
         });
     }
@@ -28,7 +26,7 @@ export default class DetectionModeLightPerception extends DetectionMode {
     _canDetect(visionSource, target) {
         const source = visionSource.object;
 
-        if (target instanceof Token) {
+        if (target instanceof foundry.canvas.placeables.Token) {
             if (target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURROWING)
                 || target.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)
                 && !source.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)
@@ -54,6 +52,6 @@ export default class DetectionModeLightPerception extends DetectionMode {
     _testPoint(visionSource, mode, target, test) {
         return super._testPoint(visionSource, mode, target, test)
             && (canvas.effects.testInsideLight(test.point)
-                || target instanceof Token && target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURNING));
+                || target instanceof foundry.canvas.placeables.Token && target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURNING));
     }
 }

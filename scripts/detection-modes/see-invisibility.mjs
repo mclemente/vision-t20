@@ -1,17 +1,15 @@
-import DetectionMode from "./base.mjs";
 import { DETECTION_LEVELS } from "../const.mjs";
-
-const { Token } = foundry.canvas.placeables;
+import DetectionModeT20 from "./base.mjs";
 
 /**
  * The detection mode for See Invisibility.
  */
-export default class DetectionModeSeeInvisibility extends DetectionMode {
+export default class DetectionModeSeeInvisibility extends DetectionModeT20 {
     constructor() {
         super({
             id: "seeInvisibility",
             label: "VISION5E.SeeInvisibility",
-            type: DetectionMode.DETECTION_TYPES.OTHER,
+            type: DetectionModeT20.DETECTION_TYPES.OTHER,
             walls: false,
             angle: false,
         });
@@ -28,7 +26,7 @@ export default class DetectionModeSeeInvisibility extends DetectionMode {
     _canDetect(visionSource, target) {
         // Only invisible and ethereal tokens can be detected
         return !visionSource.object.document.hasStatusEffect(CONFIG.specialStatusEffects.DEFEATED)
-            && target instanceof Token && (target.document.hasStatusEffect(CONFIG.specialStatusEffects.INVISIBLE)
+            && target instanceof foundry.canvas.placeables.Token && (target.document.hasStatusEffect(CONFIG.specialStatusEffects.INVISIBLE)
                 || target.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL));
     }
 
@@ -52,7 +50,7 @@ export default class DetectionModeSeeInvisibility extends DetectionMode {
             ({ id }) => {
                 const mode = CONFIG.Canvas.detectionModes[id];
 
-                return mode && mode !== this && mode.type === DetectionMode.DETECTION_TYPES.SIGHT && !mode.imprecise;
+                return mode && mode !== this && mode.type === DetectionModeT20.DETECTION_TYPES.SIGHT && !mode.imprecise;
             },
         );
 

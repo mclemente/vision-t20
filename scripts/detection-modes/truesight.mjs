@@ -1,16 +1,14 @@
-import DetectionMode from "./base.mjs";
-
-const { Token } = foundry.canvas.placeables;
+import DetectionModeT20 from "./base.mjs";
 
 /**
  * The detection mode for Truesight.
  */
-export default class DetectionModeTruesight extends DetectionMode {
+export default class DetectionModeTruesight extends DetectionModeT20 {
     constructor() {
         super({
             id: "seeAll",
             label: "T20.SenseTruesight",
-            type: DetectionMode.DETECTION_TYPES.SIGHT,
+            type: DetectionModeT20.DETECTION_TYPES.SIGHT,
             sort: -5,
         });
     }
@@ -29,7 +27,7 @@ export default class DetectionModeTruesight extends DetectionMode {
     _canDetect(visionSource, target) {
         const source = visionSource.object;
 
-        if (target instanceof Token && target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURROWING)) {
+        if (target instanceof foundry.canvas.placeables.Token && target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURROWING)) {
             return false;
         }
 

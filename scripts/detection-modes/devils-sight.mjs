@@ -1,16 +1,14 @@
-import DetectionMode from "./base.mjs";
-
-const { Token } = foundry.canvas.placeables;
+import DetectionModeT20 from "./base.mjs";
 
 /**
  * The detection mode for Devil's Sight.
  */
-export default class DetectionModeDevilsSight extends DetectionMode {
+export default class DetectionModeDevilsSight extends DetectionModeT20 {
     constructor() {
         super({
             id: "devilsSight",
             label: "VISION5E.DevilsSight",
-            type: DetectionMode.DETECTION_TYPES.SIGHT,
+            type: DetectionModeT20.DETECTION_TYPES.SIGHT,
             sort: -6,
         });
     }
@@ -29,7 +27,7 @@ export default class DetectionModeDevilsSight extends DetectionMode {
     _canDetect(visionSource, target) {
         const source = visionSource.object;
 
-        if (target instanceof Token) {
+        if (target instanceof foundry.canvas.placeables.Token) {
             if (target.document.hasStatusEffect(CONFIG.specialStatusEffects.BURROWING)
                 || target.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)
                 && !source.document.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)

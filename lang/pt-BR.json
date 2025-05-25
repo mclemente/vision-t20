@@ -6,6 +6,6 @@
     "VISION5E.HINTS.DarknessSource": "Visão no Escuro sempre é bloqueada por fontes de escuridão. Visão nas Trevas e Visão da Verdade são bloqueados apenas se a prioridade for pelo menos 100. Todos os outros modos de detecção nunca são bloqueados.",
     "VISION5E.SETTINGS.spectatorMode.label": "Modo de Espectador",
     "VISION5E.SETTINGS.spectatorMode.hint": "Configura se tokens cujo jogador tenha permissão limitada podem fornecer visão quando todos os tokens controlados do jogador estão derrotados, petrificados ou inconscientes.",
-    "VISION5E.TOOLTIPS.AutomaticallyManaged": "Gerenciado automaticamente pelo Vision 5e",
+    "VISION5E.TOOLTIPS.AutomaticallyManaged": "Gerenciado automaticamente pelo Visão para Tormenta20",
     "VISION5E.TOOLTIPS.SelectVisionMode": "Selecionar Modo de Visão"
 }
