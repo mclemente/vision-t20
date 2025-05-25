@@ -171,12 +171,13 @@ export default (Token) => class extends Token {
 
                 break;
             case "blindsight":
-                // Blindsight can see through magical darkness and fog
+            case "truesight":
+                // Blindsight and Truesight can see through magical darkness and fog
                 data.priority = Infinity;
 
                 break;
             default:
-                // Devil's Sight and Truesight can see through magical darkness but not fog
+                // Devil's Sight can see through magical darkness but not fog
                 data.priority = 100;
 
                 break;
