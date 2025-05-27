@@ -43,7 +43,7 @@ Hooks.once("i18nInit", () => {
     // Register special status effects
     CONFIG.specialStatusEffects.BLEEDING = "bleeding";
     // CONFIG.specialStatusEffects.BLINDED = "blinded";
-    CONFIG.specialStatusEffects.BURNING = "burning";
+    CONFIG.specialStatusEffects.BURNING = "emchamas";
     CONFIG.specialStatusEffects.BURROWING = "burrowing";
     CONFIG.specialStatusEffects.DEAFENED = "surdo";
     CONFIG.specialStatusEffects.DEVILS_SIGHT = "devilsSight";
