@@ -61,7 +61,7 @@ Enquanto um jogador controla/observa apenas tokens com visão que estão _derrot
 Chave de Atributo: `system.attributes.sentidos.value`
 
 | Modo de Detecção            | Valor                                     |
-| ------------------------- | ------------------------------------------------- | --- |
+| ------------------------- | ------------------------------------------- |
 | Percepção às Cegas        | `cegas`             |
 | Visão no Escuro           | `escuro`            |
 
