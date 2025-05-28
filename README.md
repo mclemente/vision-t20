@@ -37,7 +37,6 @@ Nenhuma configuração é necessária, a não ser que você queira desabilitar o
   - Não pode detectar nada sozinho e requer outro sentido para ver alvos sem a condição _etéreo_ ou _invisível_.
   - Não é restringida por paredes e nem bloqueada fontes de escuridão.
 - **Visão da Verdade** _(Magia, T20 JDA 211)_
-  - Desabilitado quando estiver _cego_, _cavando_, _derrotado_ (_morto_), _petrificado_ ou _inconsciente_.
   - Não é bloqueada por fontes de escuridão com prioridade menor que 100.
 
 ---
