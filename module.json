@@ -1,7 +1,7 @@
 {
   "id": "vision-t20",
   "title": "Visão para Tormenta20",
-  "description": "Automação de visão para Tormenta20",
+  "description": "Automação de visão para Tormenta20.",
   "authors": [
     {
       "name": "Matheus Clemente",
@@ -37,8 +37,8 @@
         "id": "tormenta20",
         "type": "system",
         "compatibility": {
-          "minimum": "1.4.214",
-          "verified": "1.4.214"
+          "minimum": "1.5.001",
+          "verified": "1.5.001"
         }
       }
     ]
