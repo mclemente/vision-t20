@@ -25,7 +25,7 @@ Nenhuma configuração é necessária, a não ser que você queira desabilitar o
   - Não é bloqueada por fontes de escuridão.
   - Configurado automaticamente para atores com o efeito da `Visão Mística`.
 - **Visão nas Trevas** _(Poder Concedido, T20 JDA 136)_
-  - Mão é bloqueada por fontes de escuridão com prioridade menor que 100.
+  - Não é bloqueada por fontes de escuridão com prioridade menor que 100.
   - Configurada automaticamente para atores com o poder concedido `Visão nas Trevas`.
 - **Visão Etérea** _(Parte da magia Forma Etérea, T20 JDA 193-194)_
   - Detecta atores _etéreos_.
