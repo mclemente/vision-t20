@@ -21,7 +21,6 @@ Nenhuma configuração é necessária, a não ser que você queira desabilitar o
   - Não é bloqueada por fontes de escuridão.
   - Configurada automaticamente pela _Percepção às Cegas_ do ator.
 - **Visão Mística** _(Magia, T20 JDA 211)_
-  - Funções não estão implementadas ainda.
   - Não pode detectar nada sozinho e requer outro sentido para ver alvos sem a condição _etéreo_.
   - Não é bloqueada por fontes de escuridão.
   - Configurado automaticamente para atores com o efeito da `Visão Mística`.
@@ -29,7 +28,6 @@ Nenhuma configuração é necessária, a não ser que você queira desabilitar o
   - Mão é bloqueada por fontes de escuridão com prioridade menor que 100.
   - Configurada automaticamente para atores com o poder concedido `Visão nas Trevas`.
 - **Visão Etérea** _(Parte da magia Forma Etérea, T20 JDA 193-194)_
-  - Funções não estão implementadas ainda.
   - Detecta atores _etéreos_.
   - Não pode detectar nada sozinho e requer outro sentido para ver alvos sem a condição _etéreo_.
   - Não é restringida por paredes e nem bloqueada fontes de escuridão.

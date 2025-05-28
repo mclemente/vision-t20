@@ -64,7 +64,7 @@ export default (Actor) => class extends Actor {
         if (senses) {
             this.detectionModes.basicSight = senses.includes("escuro") ? 9 : 0;
             // this.detectionModes.seeAll = senses.truesight;
-            this.detectionModes.blindsight = senses.includes("cegas") ? Infinity : 0;
+            this.detectionModes.blindsight = senses.includes("cegas") ? 9 : 0;
         }
 
         const featRegistry = FEAT_REGISTRY[this.type];
@@ -242,6 +242,9 @@ const EFFECT_REGISTRY = {
         detectMagic(effect) {
             upgradeDetectionMode(this, "detectMagic", 30, "m");
         },
+        formaEterea(effect) {
+            upgradeDetectionMode(this, "etherealness", 18, "m");
+        },
         visaoDaVerdade(effect) {
             upgradeDetectionMode(this, "seeAll", Infinity, "m");
         },
@@ -249,6 +252,9 @@ const EFFECT_REGISTRY = {
     npc: {
         detectMagic(effect) {
             upgradeDetectionMode(this, "detectMagic", 30, "m");
+        },
+        formaEterea(effect) {
+            upgradeDetectionMode(this, "etherealness", 18, "m");
         },
         visaoDaVerdade(effect) {
             upgradeDetectionMode(this, "seeAll", Infinity, "m");
@@ -261,6 +267,7 @@ const DATABASE = {
     "pt-BR": {
         devilsSight: ["Visão nas Trevas"],
         detectMagic: ["Visão Mística"],
+        formaEterea: ["Forma Etérea"],
         visaoDaVerdade: ["Visão da Verdade"],
     },
 };
