@@ -59,7 +59,7 @@ export default (Actor) => class extends Actor {
 
         this.detectionModes = { lightPerception: Infinity };
 
-        const senses = this.system.attributes?.sentidos.value;
+        const senses = this.system.attributes?.sentidos?.value;
 
         if (senses) {
             this.detectionModes.basicSight = senses.includes("escuro") ? 9 : 0;
