@@ -1,11 +1,25 @@
 {
-    "VISION5E.DetectMagic": "Visão Mística",
-    "VISION5E.DevilsSight": "Visão nas Trevas",
-    "VISION5E.EtherealSight": "Visão Etérea",
-    "VISION5E.SeeInvisibility": "Ver o Invisível",
-    "VISION5E.HINTS.DarknessSource": "Visão no Escuro sempre é bloqueada por fontes de escuridão. Visão nas Trevas e Visão da Verdade são bloqueados apenas se a prioridade for pelo menos 100. Todos os outros modos de detecção nunca são bloqueados.",
-    "VISION5E.SETTINGS.spectatorMode.label": "Modo de Espectador",
-    "VISION5E.SETTINGS.spectatorMode.hint": "Configura se tokens cujo jogador tenha permissão limitada podem fornecer visão quando todos os tokens controlados do jogador estão derrotados, petrificados ou inconscientes.",
-    "VISION5E.TOOLTIPS.AutomaticallyManaged": "Gerenciado automaticamente pelo Visão para Tormenta20",
-    "VISION5E.TOOLTIPS.SelectVisionMode": "Selecionar Modo de Visão"
+    "VISION5E": {
+        "DetectMagic": "Visão Mística",
+        "DevilsSight": "Visão nas Trevas",
+        "EtherealSight": "Visão Etérea",
+        "SeeInvisibility": "Ver o Invisível",
+        "HINTS": {
+            "DarknessSource": "Visão no Escuro sempre é bloqueada por fontes de escuridão. Visão nas Trevas e Visão da Verdade são bloqueados apenas se a prioridade for pelo menos 100. Todos os outros modos de detecção nunca são bloqueados."
+        },
+        "SETTINGS": {
+            "blackWhiteDarkvision": {
+                "label": "Visão no Escuro em Preto e Branco",
+                "hint": "Exibe a Visão no Escuro em preto e branco para tornar mais óbvio que o sentido utilizado é este tipo de visão. Este efeito visual não condiz com as regras do sistema."
+            },
+            "spectatorMode": {
+                "label": "Modo de Espectador",
+                "hint": "Configura se tokens cujo jogador tenha permissão limitada podem fornecer visão quando todos os tokens controlados do jogador estão derrotados, petrificados ou inconscientes."
+            }
+        },
+        "TOOLTIPS": {
+            "AutomaticallyManaged": "Gerenciado automaticamente pelo Visão para Tormenta20",
+            "SelectVisionMode": "Selecionar Modo de Visão"
+        }
+    }
 }

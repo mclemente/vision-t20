@@ -3,6 +3,12 @@
  */
 export default class VisionModeDarkvision extends foundry.canvas.perception.VisionMode {
     constructor() {
+        const defaults = { contrast: 0, brightness: 0.1 };
+
+        if (game.settings.get("vision-t20", "blackWhiteDarkvision")) {
+            defaults.saturation = -1;
+        }
+
         super({
             id: "darkvision",
             label: "T20.SenseDarkVision",
@@ -15,7 +21,7 @@ export default class VisionModeDarkvision extends foundry.canvas.perception.Visi
             },
             vision: {
                 darkness: { adaptive: false },
-                defaults: { contrast: 0, saturation: -1, brightness: 0.1 },
+                defaults,
             },
         });
     }

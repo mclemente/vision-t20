@@ -107,7 +107,7 @@ export default (TokenDocument) => class extends TokenDocument {
             this.sight.color = null;
             this.sight.attenuation = 0;
             this.sight.brightness = -1;
-            this.sight.saturation = -1;
+            if (game.settings.get("vision-t20", "blackWhiteDarkvision")) this.sight.saturation = -1;
             this.sight.contrast = 0;
         } else {
             const { color, attenuation, brightness, saturation, contrast } = CONFIG.Canvas.visionModes[this.sight.visionMode].vision.defaults;

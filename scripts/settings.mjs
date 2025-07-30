@@ -2,30 +2,42 @@
 export let spectatorMode;
 
 Hooks.once("init", () => {
-    game.settings.register(
-        "vision-t20",
-        "spectatorMode",
-        {
-            name: "VISION5E.SETTINGS.spectatorMode.label",
-            hint: "VISION5E.SETTINGS.spectatorMode.hint",
-            scope: "world",
-            config: true,
-            type: new foundry.data.fields.BooleanField({ initial: true }),
-            onChange: (value) => {
-                spectatorMode = value;
+    game.settings.register("vision-t20", "spectatorMode", {
+        name: "VISION5E.SETTINGS.spectatorMode.label",
+        hint: "VISION5E.SETTINGS.spectatorMode.hint",
+        scope: "world",
+        config: true,
+        type: new foundry.data.fields.BooleanField({ initial: true }),
+        onChange: (value) => {
+            spectatorMode = value;
 
-                if (!canvas.ready) {
-                    return;
-                }
+            if (!canvas.ready) {
+                return;
+            }
 
-                for (const token of canvas.tokens.placeables) {
-                    if (!token.vision === token._isVisionSource()) {
-                        token.initializeVisionSource();
-                    }
+            for (const token of canvas.tokens.placeables) {
+                if (!token.vision === token._isVisionSource()) {
+                    token.initializeVisionSource();
                 }
-            },
+            }
         },
-    );
+    });
+
+    game.settings.register("vision-t20", "blackWhiteDarkvision", {
+        name: "VISION5E.SETTINGS.blackWhiteDarkvision.label",
+        hint: "VISION5E.SETTINGS.blackWhiteDarkvision.hint",
+        scope: "world",
+        config: true,
+        type: new foundry.data.fields.BooleanField(),
+        onChange: (value) => {
+            if (value) CONFIG.Canvas.visionModes.darkvision.vision.defaults.saturation = -1;
+            else CONFIG.Canvas.visionModes.darkvision.vision.defaults.saturation = 0;
+
+            for (const token of canvas.tokens.placeables) {
+                token.document._prepareSight();
+            }
+        },
+    });
 
     spectatorMode = game.settings.get("vision-t20", "spectatorMode");
 });
