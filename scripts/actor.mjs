@@ -62,9 +62,9 @@ export default (Actor) => class extends Actor {
         const senses = this.system.attributes?.sentidos?.value;
 
         if (senses) {
-            this.detectionModes.basicSight = senses.includes("escuro") ? 9 : 0;
+            this.detectionModes.basicSight = senses.has("escuro") ? 9 : 0;
             // this.detectionModes.seeAll = senses.truesight;
-            this.detectionModes.blindsight = senses.includes("cegas") ? 9 : 0;
+            this.detectionModes.blindsight = senses.has("cegas") ? 9 : 0;
         }
 
         const featRegistry = FEAT_REGISTRY[this.type];
