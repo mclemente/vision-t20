@@ -1,5 +1,8 @@
 import { Matcher, convertUnits } from "./utils.mjs";
 
+/** @type {WeakSet<Actor>} */
+const REFRESHING_ACTORS = new WeakSet();
+
 export default (Actor) => class extends Actor {
     /**  @type {Record<string, number>} */
     detectionModes = this.detectionModes;
@@ -7,23 +10,46 @@ export default (Actor) => class extends Actor {
     /** @override */
     prepareData() {
         const detectionModes = this.detectionModes;
+        const wasEthereal = this.statuses?.has(CONFIG.specialStatusEffects.ETHEREAL) ?? false;
 
         super.prepareData();
 
+        // First preparation: there are no tokens to update yet
         if (!detectionModes) {
             return;
         }
 
-        for (const token of this.getDependentTokens()) {
-            if (!token.sight.enabled) {
-                continue;
-            }
+        // Only refresh the dependent tokens if the senses of the actor actually changed. Without this check every
+        // Actor#prepareData resets the tokens, which prepare their (synthetic) actor again, which resets the tokens...
+        // (endless loop that freezes the client in V14)
+        const equals = foundry.utils.equals ?? foundry.utils.objectsEqual;
 
-            token.prepareData();
+        if (equals(this.detectionModes, detectionModes)
+            && wasEthereal === this.statuses.has(CONFIG.specialStatusEffects.ETHEREAL)) {
+            return;
+        }
 
-            if (token.rendered && token.object.vision) {
-                token.object.initializeVisionSource();
+        // Safety net against re-entrancy for the same actor
+        if (REFRESHING_ACTORS.has(this)) {
+            return;
+        }
+
+        REFRESHING_ACTORS.add(this);
+
+        try {
+            for (const token of this.getDependentTokens()) {
+                if (!token.sight.enabled) {
+                    continue;
+                }
+
+                token.reset();
+
+                if (token.rendered && token.object.vision) {
+                    token.object.initializeVisionSource();
+                }
             }
+        } finally {
+            REFRESHING_ACTORS.delete(this);
         }
     }
 
@@ -62,9 +88,21 @@ export default (Actor) => class extends Actor {
         const senses = this.system.attributes?.sentidos?.value;
 
         if (senses) {
-            this.detectionModes.basicSight = senses.has("escuro") ? 9 : 0;
+            const hasSense = (key) => {
+                if (senses instanceof Set) {
+                    return senses.has(key);
+                }
+
+                if (Array.isArray(senses)) {
+                    return senses.includes(key);
+                }
+
+                return false;
+            };
+
+            this.detectionModes.basicSight = hasSense("escuro") ? 9 : 0;
             // this.detectionModes.seeAll = senses.truesight;
-            this.detectionModes.blindsight = senses.has("cegas") ? 9 : 0;
+            this.detectionModes.blindsight = hasSense("cegas") ? 9 : 0;
         }
 
         const featRegistry = FEAT_REGISTRY[this.type];

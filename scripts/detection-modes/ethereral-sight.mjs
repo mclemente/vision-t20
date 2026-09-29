@@ -1,4 +1,5 @@
 import { DETECTION_LEVELS } from "../const.mjs";
+import { filterDetectionModes } from "../utils.mjs";
 import DetectionModeT20 from "./base.mjs";
 
 /**
@@ -45,7 +46,8 @@ export default class DetectionModeEtherealSight extends DetectionModeT20 {
 
         target._detectionLevel = DETECTION_LEVELS.NONE;
 
-        visionSource.object.document.detectionModes = detectionModes.filter(
+        visionSource.object.document.detectionModes = filterDetectionModes(
+            detectionModes,
             ({ id }) => {
                 const mode = CONFIG.Canvas.detectionModes[id];
 

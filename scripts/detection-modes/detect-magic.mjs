@@ -1,5 +1,6 @@
 import DetectionModeDetect from "./detect.mjs";
 import { DETECTION_LEVELS } from "../const.mjs";
+import { filterDetectionModes } from "../utils.mjs";
 
 /**
  * The detection mode for Detect Magic.
@@ -45,7 +46,8 @@ export default class DetectionModeDetectMagic extends DetectionModeDetect {
 
         target._detectionLevel = DETECTION_LEVELS.NONE;
 
-        visionSource.object.document.detectionModes = detectionModes.filter(
+        visionSource.object.document.detectionModes = filterDetectionModes(
+            detectionModes,
             ({ id }) => {
                 const mode = CONFIG.Canvas.detectionModes[id];
 

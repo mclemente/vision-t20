@@ -1,8 +1,12 @@
 import { DETECTION_LEVELS } from "./const.mjs";
+import { detectionModeList } from "./utils.mjs";
 
 export default (CanvasVisibility) => class extends CanvasVisibility {
     /** @override */
-    testVisibility(point, options = {}) {
+    testVisibility(points, options = {}) {
+        // V14 passes a point or an array of points, V13 a single point
+        const pointList = Array.isArray(points) ? points : [points];
+        const point = pointList[0];
         const object = options.object ?? null;
 
         if (!canvas.effects.visionSources.some((source) => source.active)) {
@@ -23,7 +27,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
             return false;
         }
 
-        const config = this._createVisibilityTestConfig(point, options);
+        const config = this._createVisibilityTestConfig(game.release.generation >= 14 ? pointList : point, options);
 
         for (const lightSource of canvas.effects.lightSources) {
             if (!lightSource.data.vision || !lightSource.active) {
@@ -58,7 +62,7 @@ export default (CanvasVisibility) => class extends CanvasVisibility {
             const token = visionSource.object.document;
             let hasDetectionMode = false;
 
-            for (const mode of token.detectionModes) {
+            for (const mode of detectionModeList(token.detectionModes)) {
                 const detectionMode = CONFIG.Canvas.detectionModes[mode.id];
 
                 if (detectionMode) {

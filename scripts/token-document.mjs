@@ -1,4 +1,4 @@
-import { convertUnits } from "./utils.mjs";
+import { convertUnits, detectionModeList } from "./utils.mjs";
 
 export default (TokenDocument) => class extends TokenDocument {
     /** @override */
@@ -6,58 +6,51 @@ export default (TokenDocument) => class extends TokenDocument {
         super.prepareBaseData();
 
         this._prepareSight();
-
-        // Sorting is necessary for patched CanvasVisibility#testVisibility
-        this.detectionModes.sort((a, b) => {
-            a = CONFIG.Canvas.detectionModes[a.id];
-            b = CONFIG.Canvas.detectionModes[b.id];
-
-            return (b.important ?? false) - (a.important ?? false)
-                || (a.imprecise ?? false) - (b.imprecise ?? false)
-                || (b.id === this.sight.detectionMode) - (a.id === this.sight.detectionMode)
-                || (a.sort ?? 0) - (b.sort ?? 0);
-        });
     }
 
     /** @override */
     _prepareDetectionModes() {
-        this.detectionModes = [];
+        // V13: array of modes, V14: object of modes keyed by id
+        const legacy = Array.isArray(this._source.detectionModes);
+        const modes = [];
 
-        if (!this.sight.enabled) {
-            return;
-        }
+        if (this.sight.enabled) {
+            for (const { id, enabled, range } of detectionModeList(this._source.detectionModes)) {
+                if (!(id in CONFIG.Canvas.detectionModes)) {
+                    continue;
+                }
 
-        for (const { id, enabled, range } of this._source.detectionModes) {
-            if (!(id in CONFIG.Canvas.detectionModes)) {
-                continue;
+                modes.push({ id, enabled: enabled ?? true, range: range ?? Infinity });
             }
 
-            this.detectionModes.push({ id, enabled, range: range ?? Infinity });
-        }
+            const sceneUnits = this.parent?.grid.units || "";
 
-        const sceneUnits = this.parent?.grid.units || "";
-
-        if (this.actor) {
-            for (const [id, range] of Object.entries(this.actor.detectionModes)) {
-                if (!this.detectionModes.find((mode) => mode.id === id)) {
-                    this.detectionModes.push({
-                        id,
-                        enabled: true,
-                        range: convertUnits(range, "m", sceneUnits),
-                    });
+            if (this.actor) {
+                for (const [id, range] of Object.entries(this.actor.detectionModes)) {
+                    if (!modes.find((mode) => mode.id === id)) {
+                        modes.push({
+                            id,
+                            enabled: true,
+                            range: convertUnits(range, "m", sceneUnits),
+                        });
+                    }
+                }
+            } else {
+                if (!modes.find((mode) => mode.id === "lightPerception")) {
+                    modes.push({ id: "lightPerception", enabled: true, range: Infinity });
                 }
             }
-        } else {
-            if (!this.detectionModes.find((mode) => mode.id === "lightPerception")) {
-                this.detectionModes.push({ id: "lightPerception", enabled: true, range: Infinity });
+
+            if (this.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)) {
+                for (const mode of modes) {
+                    mode.range = Math.min(mode.range, 18);
+                }
             }
         }
 
-        if (this.hasStatusEffect(CONFIG.specialStatusEffects.ETHEREAL)) {
-            for (const mode of this.detectionModes) {
-                mode.range = Math.min(mode.range, 18);
-            }
-        }
+        this.detectionModes = legacy
+            ? modes
+            : Object.fromEntries(modes.map(({ id, enabled, range }) => [id, { enabled, range }]));
     }
 
     /** @protected */
@@ -76,9 +69,10 @@ export default (TokenDocument) => class extends TokenDocument {
             return;
         }
 
+        const modes = detectionModeList(this.detectionModes);
         let detectionMode = VISION_TO_DETECTION_MODE_MAPPING[this._source.sight.visionMode];
 
-        if (detectionMode && (detectionMode = this.detectionModes.find((mode) => mode.id === detectionMode && mode.enabled && mode.range > 0))) {
+        if (detectionMode && (detectionMode = modes.find((mode) => mode.id === detectionMode && mode.enabled && mode.range > 0))) {
             this.sight.range = detectionMode.range;
             this.sight.visionMode = this._source.sight.visionMode;
             this.sight.detectionMode = detectionMode.id;
@@ -88,7 +82,7 @@ export default (TokenDocument) => class extends TokenDocument {
             this.sight.detectionMode = "basicSight";
 
             for (const [visionMode, detectionMode] of Object.entries(VISION_TO_DETECTION_MODE_MAPPING)) {
-                const mode = this.detectionModes.find((mode) => mode.id === detectionMode);
+                const mode = modes.find((mode) => mode.id === detectionMode);
 
                 if (!mode || !mode.enabled || this.sight.range >= mode.range) {
                     continue;
