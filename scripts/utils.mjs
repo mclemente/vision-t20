@@ -54,3 +54,35 @@ export function toMeters(range, units) {
 export function convertUnits(range, fromUnits, toUnits) {
     return toMeters(fromMeters(range, fromUnits), toUnits);
 }
+
+/**
+ * In V13 the detection modes of a token are an array of `{id, enabled, range}`.
+ * In V14 they are an object keyed by the id of the detection mode: `{[id]: {enabled, range}}`.
+ * @param {object[] | Record<string, object> | undefined} modes
+ * @returns {{id: string, enabled: boolean, range: number}[]}
+ */
+export function detectionModeList(modes) {
+    if (!modes) {
+        return [];
+    }
+
+    if (Array.isArray(modes)) {
+        return modes;
+    }
+
+    return Object.entries(modes).map(([id, mode]) => ({ id, enabled: mode.enabled, range: mode.range }));
+}
+
+/**
+ * Filter the detection modes and keep the shape (array or object) of the input.
+ * @param {object[] | Record<string, object>} modes
+ * @param {(mode: {id: string, enabled: boolean, range: number}) => boolean} predicate
+ * @returns {object[] | Record<string, object>}
+ */
+export function filterDetectionModes(modes, predicate) {
+    if (Array.isArray(modes)) {
+        return modes.filter(predicate);
+    }
+
+    return Object.fromEntries(Object.entries(modes ?? {}).filter(([id, mode]) => predicate({ id, enabled: mode.enabled, range: mode.range })));
+}
